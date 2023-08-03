@@ -1,5 +1,7 @@
-const btn = document.querySelector('[data-form-btn]');
-    console.log(btn);
+import checkComplete from './components/checkComplete.js';
+import deleteIcon from './components/deleteIcon.js';
+
+const btn = document.querySelector('[data-form-btn]'); 
                        // Arrow functions o funciones anonimas =>
 const createTask = (evento) => {
     evento.preventDefault();
@@ -9,21 +11,22 @@ const createTask = (evento) => {
     const task = document.createElement('li');
     task.classList.add('card');
     input.value = '';
-      //backticks son las comillas invertidas
-    const content = `<div>
-        <i class="far fa-check-square icon"></i>
-        <span class="task"> ${value}</span>
-        </div>
-        <i class="fas fa-trash-alt trashIcon icon"></i>`;
-    task.innerHTML = content;
+    const taskContent = document.createElement('div');
 
+    const titleTask = document.createElement('span');
+    titleTask.classList.add('task');
+    titleTask.innerText = value;
+    taskContent.appendChild(checkComplete());
+    taskContent.appendChild(titleTask);
+    task.appendChild(taskContent);
+    task.appendChild(deleteIcon());
     list.appendChild(task);
-
-    console.log(content);
+          //backticks son las comillas invertidas ``
+    
 };
-
                     //el click es un listener
-btn.addEventListener('click', createTask);
+btn.addEventListener('click', createTask);  
+
 
 
 /*<li class="card" data-task>
